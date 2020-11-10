@@ -1,18 +1,38 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <Add @addItem="addItem"/>
+    <List :listData="listData"/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-
+import Add from '@/components/Add.vue'
+import List from '@/components/List.vue'
 export default {
   name: 'Home',
+  data () {
+    return {
+      listData: [
+        {
+          id: 1,
+          text: '学习VUE',
+          state: 0
+        }
+      ]
+    }
+  },
+  methods: {
+    addItem (item) {
+      console.log(item)
+      this.listData.push({ id: Date.now(), text: item, state: 0 })
+    }
+  },
   components: {
-    HelloWorld
+    HelloWorld,
+    Add,
+    List
   }
 }
 </script>
